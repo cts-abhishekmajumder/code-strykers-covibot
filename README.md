@@ -39,7 +39,7 @@ It's imperative that learning and creating can continue when educational institu
 
 ## Demo video
 
-[![Watch the video](https://github.com/Code-and-Response/Liquid-Prep/blob/master/images/IBM-interview-video-image.png)](https://vimeo.com/442740990)
+[![Watch the video](https://player.vimeo.com/video/442740990)]
 
 ## The architecture
 
