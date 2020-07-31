@@ -10,6 +10,7 @@ A basic GitHub repository example for Call for Code submissions and those projec
 1. [The architecture](#the-architecture)
 1. [Long description](#long-description)
 1. [Built with](#built-with)
+1. [Web Preview](#web-preview)
 1. [Contributing](#contributing)
 1. [Versioning](#versioning)
 1. [Authors](#authors)
@@ -61,6 +62,10 @@ It's imperative that learning and creating can continue when educational institu
 * [IBM Cloud Functions](https://cloud.ibm.com/catalog?search=cloud%20functions#search_results) - The compute platform for handing logic
 * [IBM Watson](https://cloud.ibm.com/catalog?search=watson#search_results) - The chatbot framework
 * [IBM Watson Discovery](https://cloud.ibm.com/catalog?search=discovery#search_results) - The cognitive search engine
+
+## Web Preview
+
+[CoviBot Web Preview](https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=e222ce6d-7923-4330-abd6-b9a223d12358&serviceInstanceID=fd10a9da-d1f9-4fae-abb7-01a04cc81d83)
 
 ## Contributing
 
