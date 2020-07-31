@@ -11,7 +11,7 @@ A basic GitHub repository example for Call for Code submissions and those projec
 1. [Long description](#long-description)
 1. [Built with](#built-with)
 1. [Web Preview](#web-preview)
-1. [Contributing](#contributing)
+1. [Contributors](#contributors)
 1. [Versioning](#versioning)
 1. [Authors](#authors)
 1. [License](#license)
@@ -76,18 +76,13 @@ CoviBot is an efficient chatbot solution with the below properties which will he
 
 [CoviBot Web Preview](https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=e222ce6d-7923-4330-abd6-b9a223d12358&serviceInstanceID=fd10a9da-d1f9-4fae-abb7-01a04cc81d83)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Contributors
 
-* **Rajat Banerjee**
-* **Sinchan Saha Bhowmick**
-* **Abhishek Majumder**
-* **Somenath Kundu**
-* **Prasun Ghosh** 
-
+* Rajat Banerjee
+* Sinchan Saha Bhowmick
+* Somenath Kundu
+* Prasun Ghosh
+* Abhishek Majumder
 
 ## License
 
