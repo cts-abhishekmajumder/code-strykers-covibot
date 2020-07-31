@@ -32,7 +32,7 @@ It's imperative that learning and creating can continue when educational institu
 
 ## Demo video
 
-video: https://player.vimeo.com/video/442740990
+[![Watch the video](https://github.com/cts-abhishekmajumder/code-strykers-covibot/blob/master/covibot-demo-thumbnail.PNG)](https://player.vimeo.com/video/442740990)
 
 ## The architecture
 
