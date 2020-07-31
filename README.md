@@ -5,7 +5,7 @@ A basic GitHub repository example for Call for Code submissions and those projec
 
 ## Contents
 
-1. [Short description](#short-description)
+1. [Description](#description)
 1. [Demo video](#demo-video)
 1. [The architecture](#the-architecture)
 1. [Long description](#long-description)
@@ -17,19 +17,21 @@ A basic GitHub repository example for Call for Code submissions and those projec
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
 
-## Short description
+## Description
 
 ### What's the problem?
 
-Part of the World Health Organization's guidance on limiting further spread of COVID-19 is to practice social distancing. As a result, schools in most affected areas are taking precautionary measures by closing their facilities. With school-aged children at home for an indeterminate amount of time,  keeping them engaged, entertained, and on top of their education is important.
+Current COVID 19 pandemic is continuously raising questions on its symptoms, nearby medical facilities as well as the current status of schools, transportation, and other public services.
+But, in times of crisis, most of the call centers or helpline numbers are often overloaded with high volume of incoming calls, thus raising the wait time, quality of service and panic. Any other communication service is also rarely available especially in the urban and rural areas. Thus creating an anxiety in the people during this pandemic situation. But, what if people have a chat bot available and accessible easily, which will be able to provide response to the different queries frequently asked by them.
 
-### How can technology help?
+### Our Solution?
 
-Schools and teachers can continue to engage with their students through virtual classrooms, and even create interactive spaces for classes. As parents face a new situation where they may need to homeschool their children, finding appropriate online resources is important as well.
-
-### The idea
-
-It's imperative that learning and creating can continue when educational institutions have to shift the way they teach in times of crises, such as the COVID-19 pandemic. Providing a set of open source tools, backed by IBM Cloud and Watson Services, will enable educators to more easily make content available for their students.
+CoviBot is an efficient chatbot solution with the below properties which will help communities to understand the latest on the COVID-19 situations along with possible symptoms and probability of having infection - 
+- The input will be in text form for now. Voice input can also be incorporated in later releases. 
+- Chat bot will provide some basic but important information about current pandemic situation COVID 19 that users requests for.
+- It would be able to identify if user might be affected by COVID 19 based on the input symptoms given.
+- It would help user about real time COVID 19 statistics for different countries and states worldwide.
+- It would be able to help the user about nearest COVID 19 hospital or isolation centers or test center based on specific location mentioned by user.
 
 ## Demo video
 
