@@ -38,10 +38,18 @@ video: https://player.vimeo.com/video/442740990
 
 ![Video transcription/translation app](https://github.com/cts-abhishekmajumder/code-strykers-covibot/blob/master/covibot-architecture-diagram.png)
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+1. The user visits a website with the COVID-19 chatbot and asks a question.
+2. The Node.js web server calls Watson Assistant hosted in IBM Cloud.
+3. Watson Assistant uses natural language understanding and machine learning to extract entities and intents of the user question.
+4. The COVID-19 FAQ presents commonly asked questions about the pandemic for the user to select
+5. There is another option for users to self-assess their current health status by answering a set of questions.
+6. Watson Assistant invokes an OpenWhisk open source-powered IBM Cloud Function.
+7. IBM Cloud Function calls Watson Discovery running in IBM Cloud.
+8. Watson Discovery presents an external URL for detailed information
+9. Watson Assistant invokes an OpenWhisk open source powered IBM Cloud Function.
+10. IBM Cloud Function calls a series of COVID-19 APIs to get statistics.
+11. Watson Assistant replies to the user inquiry.
+12. The Node.js web server displays the chat answer to the user.
 
 ## Long description
 
