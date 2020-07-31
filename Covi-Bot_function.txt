@@ -1,0 +1,637 @@
+/**
+
+
+ *
+
+
+ * main() will be run when you invoke this action
+
+
+ *
+
+
+ * @param Cloud Functions actions accept a single parameter, which must be a JSON object.
+
+
+ *
+
+
+ * @return The output of this action, which must be a JSON object.
+
+
+ *
+
+
+ */
+
+
+var request = require("request-promise");
+
+
+const DiscoveryV1 = require("watson-developer-cloud/discovery/v1");
+
+
+
+
+
+function getRandomInt(max) {
+
+
+  return Math.floor(Math.random() * Math.floor(max));
+
+
+}
+
+
+
+
+async function main(params) {
+
+
+  if (params.type === "api") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.covid19api.com/summary",
+
+
+        json: true
+
+
+      });
+
+
+
+
+
+      if (params.country) {
+
+
+        for (var i = 0; i < summary.Countries.length; i++) {
+
+
+          if (
+
+
+            summary.Countries[i].Country.toLowerCase() ===
+
+
+            params.country.toLowerCase()
+
+
+          ) {
+
+
+            return {
+
+
+              result: `Country Name: ${summary.Countries[i].Country}\nCountry Code: ${summary.Countries[i].CountryCode}\nTotal Cases: ${summary.Countries[i].TotalConfirmed}\nTotal Deaths: ${summary.Countries[i].TotalDeaths}\nTotal Recovered: ${summary.Countries[i].TotalRecovered}\nStat Date: ${summary.Countries[i].Date}\n\nSource: Johns Hopkins CSSE`
+
+
+            };
+
+
+          }
+
+
+        }
+
+
+        return { error: "did not find country" };
+
+
+      }
+
+
+      let countryName = summary.Countries.Country;
+      
+      let countryCode = summary.Countries.CountryCode;
+
+      let totalCases = 0;
+
+
+      let totalDeaths = 0;
+
+
+      let totalRecovered = 0;
+
+      let statDate = summary.Countries.Date;
+
+
+
+
+
+      for (var i = 0; i < summary.Countries.length; i++) {
+
+
+        totalCases += summary.Countries[i].TotalConfirmed;
+
+
+        totalDeaths += summary.Countries[i].TotalDeaths;
+
+
+        totalRecovered += summary.Countries[i].TotalRecovered;
+
+
+      }
+
+
+      return {
+
+
+        result: `Country Names: ${countryName}\nCountry Code: ${countryCode}\nTotal Cases: ${totalCases}\nTotal Deaths: ${totalDeaths}\nTotal Recovered: ${totalRecovered}\nStat Dates: ${statDate}\n\nSource: Johns Hopkins CSSE`
+
+
+      };
+  } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+
+  }
+
+
+else if (params.type === "stateapi") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.covid19india.org/state_test_data.json",
+
+
+        json: true
+
+
+      });
+
+
+
+
+
+      if (params.state) {
+
+
+for (var i = 0; i < summary.states_tested_data.length; i++) {
+
+
+          if (
+
+
+            summary.states_tested_data[i].state.toLowerCase() ===
+
+
+            params.state.toLowerCase()
+
+
+          ) {
+
+
+      var State = summary.states_tested_data[i].state;
+      
+      var TotalPositivityRate = summary.states_tested_data[i].testpositivityrate;
+
+      var TotalTested = summary.states_tested_data[i].totaltested;
+      
+      var PositiveCases = summary.states_tested_data[i].positive;
+
+      var Negative = summary.states_tested_data[i].negative;
+      
+      var Qurantined = summary.states_tested_data[i].totalpeoplecurrentlyinquarantine;
+      
+      var Released = summary.states_tested_data[i].totalpeoplereleasedfromquarantine;
+      
+      var UpdatedOn = summary.states_tested_data[i].updatedon;
+
+        
+          }
+
+
+        }
+
+
+       return {
+	result: `State Name: ${State}\nTotal Positivity Rate: ${TotalPositivityRate}\nTotal Tested: ${TotalTested}\nPositive Cases: ${PositiveCases}\nNegative Cases: ${Negative}\nPeople in Quarantine: ${Qurantined}\nPeople released from Quarantine: ${Released}\nUpdated On: ${UpdatedOn}\n\nSource: COVID19 India`
+      };
+
+
+      }
+
+
+
+  } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+}
+
+
+else if (params.type === "districtapi") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.covid19india.org/raw_data7.json",
+
+
+        json: true
+        
+
+
+      });
+      
+      if (params.district) {
+
+
+
+
+
+let HNumberOfCases = 0;
+let RNumberOfCases = 0;
+let DNumberOfCases = 0;
+
+for (var i = 0; i < summary.raw_data.length; i++) {
+
+
+          if (
+
+
+            summary.raw_data[i].detecteddistrict.toLowerCase() ===
+
+
+            params.district.toLowerCase() && summary.raw_data[i].currentstatus.toLowerCase() === "hospitalized"
+
+
+          ) {
+
+
+      var HStateName = summary.raw_data[i].detectedstate;
+      
+      var HStateCode = summary.raw_data[i].statecode;
+      
+      var HDistrictNme = summary.raw_data[i].detecteddistrict;
+      
+      var HCount = Number(summary.raw_data[i].numcases);
+      
+      HNumberOfCases = HNumberOfCases + HCount;
+
+      var HUpdatedOn = summary.raw_data[i].dateannounced;
+     
+        
+          }
+
+
+        }
+
+
+for (var j = 0; j < summary.raw_data.length; j++) {
+
+
+          if (
+
+
+            summary.raw_data[j].detecteddistrict.toLowerCase() ===
+
+
+            params.district.toLowerCase() && summary.raw_data[j].currentstatus.toLowerCase() === "recovered"
+
+
+          ) {
+
+      var RCount = Number(summary.raw_data[j].numcases);
+      
+      RNumberOfCases = RNumberOfCases + RCount;
+     
+        
+          }
+
+
+        }
+
+for (var k = 0; k < summary.raw_data.length; k++) {
+
+
+          if (
+
+
+            summary.raw_data[k].detecteddistrict.toLowerCase() ===
+
+
+            params.district.toLowerCase() && summary.raw_data[k].currentstatus.toLowerCase() === "deceased"
+
+
+          ) {
+
+      
+     DCount = Number(summary.raw_data[k].numcases);
+     
+     DNumberOfCases = DNumberOfCases + DCount;
+     
+        
+          }
+
+
+        }
+
+
+       return {
+	result: `State Name: ${HStateName}\nState Code: ${HStateCode}\nDistrict Name: ${HDistrictNme}\nTotal Hospitalized: ${HNumberOfCases}\nTotal Recovered: ${RNumberOfCases}\nTotal Deceased: ${DNumberOfCases}\nUpdated On: ${HUpdatedOn}\n\nSource: COVID19 India`
+      };
+
+
+      }
+
+
+
+  } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+}
+
+
+else if (params.type === "zoneapi") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.covid19india.org/zones.json",
+
+
+        json: true
+        
+
+
+      });
+      
+      if (params.district) {
+          
+          for (var k = 0; k < summary.zones.length; k++) {
+          
+          if (
+
+
+            summary.zones[k].district.toLowerCase() ===
+
+
+            params.district.toLowerCase()
+
+
+          ) {
+              
+              var DistNme = summary.zones[k].district;
+              var StateNme = summary.zones[k].state;
+              var Zone = summary.zones[k].zone;
+              
+          }
+          
+          }
+          return {
+	result: `Your District ${DistNme} comes under ${StateNme} state which is a ${Zone} zone now.\n\nSource: COVID19 India`
+      };
+      }
+      } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+}     
+          
+ else if (params.type === "hospitalapi") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.rootnet.in/covid19-in/hospitals/medical-colleges",
+
+
+        json: true
+        
+
+
+      });
+      
+      if (params.city) {
+          
+         var text = "";
+          
+          for (var k = 0; k < summary.data.medicalColleges.length; k++) {
+          
+          if (
+
+
+            summary.data.medicalColleges[k].city.toLowerCase() ===
+
+
+            params.city.toLowerCase()
+
+
+          ) {
+              
+              var StateName = summary.data.medicalColleges[k].state;
+              var CityName = summary.data.medicalColleges[k].city;
+              var HospitalName = summary.data.medicalColleges[k].name;
+              var Owner = summary.data.medicalColleges[k].ownership;
+              var AdmissionCapacity = summary.data.medicalColleges[k].admissionCapacity;
+              var HospitalBeds = summary.data.medicalColleges[k].hospitalBeds;
+              
+              text += " Hospital Name:" + HospitalName + "\n Owner:" + Owner +"\n Admission Capacity:" + AdmissionCapacity + "\n Total Beds:" + HospitalBeds+ " \n\nSource: COVID19 India\n\n\n\n";
+              
+          }
+          
+          }
+          
+          return {
+	result: `${text}`
+              };
+              
+      }
+      } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+}         
+     
+      
+
+else if (params.type === "shospitalapi") {
+
+
+    try {
+
+
+      const summary = await request({
+
+
+        method: "GET",
+
+
+        uri: "https://api.rootnet.in/covid19-in/hospitals/medical-colleges",
+
+
+        json: true
+        
+
+
+      });
+      
+      if (params.state) {
+          
+         var text = "";
+          
+          for (var k = 0; k < summary.data.medicalColleges.length; k++) {
+          
+          if (
+
+
+            summary.data.medicalColleges[k].state.toLowerCase() ===
+
+
+            params.state.toLowerCase()
+
+
+          ) {
+              
+              var StateName = summary.data.medicalColleges[k].state;
+              var CityName = summary.data.medicalColleges[k].city;
+              var HospitalName = summary.data.medicalColleges[k].name;
+              var Owner = summary.data.medicalColleges[k].ownership;
+              var AdmissionCapacity = summary.data.medicalColleges[k].admissionCapacity;
+              var HospitalBeds = summary.data.medicalColleges[k].hospitalBeds;
+              
+              text += "State Name:" + StateName +"\n City Name:" + CityName +"\n Hospital Name:" + HospitalName + "\n Owner:" + Owner +"\n Admission Capacity:" + AdmissionCapacity + "\n Total Beds:" + HospitalBeds+ " \n\nSource: COVID19 India\n\n\n\n";
+              
+          }
+          
+          }
+          
+          return {
+	result: `${text}`
+              };
+              
+      }
+      } catch (err) {
+
+
+      return { error: "it failed : " + err };
+
+
+    }
+}         
+         
+
+else {
+
+const discovery = new DiscoveryV1({
+
+      version: "2019-03-25",
+
+      iam_apikey: params.api_key,
+
+      url: params.url,
+
+    });
+
+
+
+    const offset = getRandomInt(50);
+
+
+
+    const queryParams = {
+
+      environment_id: params.env_id,
+
+      collection_id: params.collection_id,
+
+      natural_language_query:
+
+        "corona virus " + params.input || "corona virus news",
+
+      count: 3,
+
+      offset: offset,
+
+    };
+
+    try {
+
+      data = await discovery.query(queryParams);
+
+      let response = data.results.map((v, i) => {
+
+        return `${v.title}
+
+                 ${v.text}
+
+                 ${v.url}`;
+
+      });
+
+      return {
+
+        result:
+
+          "Here are some news articles we found. We can’t verify the accuracy of all of these sources.\n\n" +
+
+          response.join("\n\n"),
+
+      };
+
+    } catch (err) {
+
+      return { error: "it failed : " + err };
+
+    }
+
+  }
+}

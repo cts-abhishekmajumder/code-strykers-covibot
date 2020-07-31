@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+body {
+  background-image: url('https://cdn.pixabay.com/photo/2020/03/08/23/24/coronavirus-4914028_960_720.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	
+}
+</style>
+</head>
+<h1 style="color:white;text-align:center;font-size:50px;">Welcome to CoviBot Interactive Session</h1> 
+<script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "aafe863b-4287-4325-a775-8339731688d8", // The ID of this integration.
+      region: "eu-gb", // The region your integration is hosted in.
+      serviceInstanceID: "fd10a9da-d1f9-4fae-abb7-01a04cc81d83", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+    document.head.appendChild(t);
+  });
+</script>
+</html>
