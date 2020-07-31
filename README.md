@@ -8,12 +8,10 @@ A basic GitHub repository example for Call for Code submissions and those projec
 1. [Description](#description)
 1. [Demo video](#demo-video)
 1. [The architecture](#the-architecture)
-1. [Long description](#long-description)
+1. [Business Benefits](#business-benefits)
 1. [Built with](#built-with)
 1. [Web Preview](#web-preview)
 1. [Contributors](#contributors)
-1. [Versioning](#versioning)
-1. [Authors](#authors)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
 
