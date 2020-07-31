@@ -54,9 +54,16 @@ CoviBot is an efficient chatbot solution with the below properties which will he
 11. Watson Assistant replies to the user inquiry.
 12. The Node.js web server displays the chat answer to the user.
 
-## Long description
+## Business Benefits
 
-[More detail is available here](DESCRIPTION.md)
+- It would help communities quickly to understand crucial information about the COVID-19 pandemic situation and free up customer service resources to focus on higher-level issues. 
+- The solution will be available 24x7 to cater to variety of requests from end users
+- The solution can be accessed by a wide range of users in parallel without any performance delay
+- Providing basic information to users, the Chatbot will be able to dispel a lot of myth surrounding the pandemic and build mass awareness
+- By helping users in self-detection of probable symptoms of the disease, it can help in early detection and thus minimize community spread
+- By providing real-time information and news items, it will make the user more cautious towards the spread of the disease
+- By providing information like nearest hospital and Containment or RED Zones it helps the end user get proper assistance during the time of crisis
+
 
 ## Built with
 
@@ -73,15 +80,14 @@ CoviBot is an efficient chatbot solution with the below properties which will he
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+## Contributors
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+* **Rajat Banerjee**
+* **Sinchan Saha Bhowmick**
+* **Abhishek Majumder**
+* **Somenath Kundu**
+* **Prasun Ghosh** 
 
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/Code-and-Response/Project-Sample/graphs/contributors) who participated in this project.
 
 ## License
 
